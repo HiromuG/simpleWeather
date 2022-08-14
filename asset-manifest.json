@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/simpleWeather/static/css/main.a6466139.css",
+    "main.js": "/simpleWeather/static/js/main.1dea54d1.js",
+    "static/media/cloud.jpeg": "/simpleWeather/static/media/cloud.4bbdc3ae2a92f4936a46.jpeg",
+    "index.html": "/simpleWeather/index.html",
+    "main.a6466139.css.map": "/simpleWeather/static/css/main.a6466139.css.map",
+    "main.1dea54d1.js.map": "/simpleWeather/static/js/main.1dea54d1.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a6466139.css",
+    "static/js/main.1dea54d1.js"
+  ]
+}

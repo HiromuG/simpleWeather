@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.app{
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  background: rgba(0,0,0,0.3);
+  overflow-y: hidden;
+  font-family: 'Kosugi Maru', sans-serif;
+}
+  .app::before{
+    content: '';
+    background: url('./source/cloud.jpeg') center/cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+.loader{
+  display: flex;
+  position: fixed;
+  left: 50%;
+  z-index: 99;
+  width: 2rem;
+  height: 2rem;
+  border: 5px solid #f3f3f3;
+  border-top: 6px solid rgb(135, 134, 134);
+  border-radius: 100%;
+  animation: spin 1s infinite linear;
+}
+  .hideLoader{
+    display: none;
+  }
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+      to {
+        transform: rotate(360deg);
+    }
+  }
+.alert{
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+}
+.locationSelect{
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: 10%;
+  z-index: 2;
+}
+.selector{
+  width: 300px;
+}
+#selectField{
+  width: 100%;
+  padding: 15px 20px;
+  margin-bottom: 30px;
+  box-sizing: border-box;
+  background: rgba(255,255,255,0.6);
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.25em;
+  cursor: pointer;
+}
+  #selectField img{
+    width: 16px;
+  }
+  .arrow{
+    transition: 0.5s;
+    transform: rotate(0);
+  }
+  .arrowToggle{
+    transition: 0.5s;
+    transform: rotate(180deg);
+  }
+#list{
+  width: 100%;
+  background: rgba(255,255,255,0.6);
+  border-radius: 6px;
+  overflow: hidden;
+  font-size: 1.25em;
+  transition: 0.5s linear;
+}
+.hide{
+  visibility: hidden;
+  opacity: 0;
+}
+.options{
+  width: 100%;
+  padding: 20px;
+  list-style: none;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+  .options:hover{
+    background: rgba(255,255,255,0.3);
+  }
+
+.result{
+  display: none;
+}
+  .showResult{
+    display: inline;
+  }
+.displayBox{
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  top: -20%;
+}
+  .displayBox .city{
+    font-size: 2em;
+    position: relative;
+    left: -10%;
+  }
+  .displayBox .temperature{
+    font-size: 5em;
+    font-family: 'Nunito', sans-serif;
+    position: relative;
+    margin-top: 1em;
+    left: 0%;
+  }
+  .displayBox .description{
+    font-size: 1.75em;
+    position: relative;
+    margin-top: 10vh;
+    right: -10%;
+  }
+.time{
+  display: flex;
+  justify-content: center;
+  color: #fff;
+  margin: -13vh auto 2vh;
+}
+.displayBottom{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 15px;
+  margin: auto 2em;
+  color: #fff;
+  background: rgba(255,255,255,0.2);
+  border-radius: 25px;
+  font-size: 1.25em;
+}

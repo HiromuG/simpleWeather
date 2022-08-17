@@ -10,7 +10,7 @@
   height: 100vh;
   position: relative;
   background: rgba(0,0,0,0.3);
-  overflow-y: hidden;
+  overflow: hidden;
   font-family: 'Kosugi Maru', sans-serif;
 }
   .app::before{
@@ -24,6 +24,13 @@
     height: 100%;
     z-index: -1;
   }
+.time{
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 1em;
+  color: #fff;
+}
 .loader{
   display: flex;
   position: fixed;
@@ -56,7 +63,7 @@
   display: flex;
   justify-content: center;
   position: relative;
-  top: 10%;
+  top: 5%;
   z-index: 2;
 }
 .selector{
@@ -117,45 +124,94 @@
   }
 .displayBox{
   color: #fff;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  text-align: center;
   position: relative;
-  top: -20%;
+  top: -15%;
 }
   .displayBox .city{
     font-size: 2em;
     position: relative;
     left: -10%;
   }
+  .displayBox .feel{
+    font-size: 1.25em;
+    position: relative;
+    right: -10%;
+  }
   .displayBox .temperature{
     font-size: 5em;
     font-family: 'Nunito', sans-serif;
     position: relative;
+    top: -7.5vh;
     margin-top: 1em;
-    left: 0%;
+  }
+  .displayBox .rain{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.75em;
+    position: relative;
+    top: -10vh;
+    margin-top: 1em;
+  }
+  .displayBox .rain span{
+    font-size: 1.75em;
+    font-family: 'Nunito', sans-serif;
+  }
+  .displayBox .weatherIcon{
+    height: 50px;
+    object-fit: cover;
+    margin-left: 1em;
   }
   .displayBox .description{
     font-size: 1.75em;
     position: relative;
-    margin-top: 10vh;
-    right: -10%;
+    margin-top: -5vh;
   }
-.time{
-  display: flex;
-  justify-content: center;
-  color: #fff;
-  margin: -13vh auto 2vh;
-}
 .displayBottom{
   display: flex;
   justify-content: space-around;
   align-items: center;
   padding: 15px;
-  margin: auto 2em;
+  margin: -10vh 2vh;
   color: #fff;
   background: rgba(255,255,255,0.2);
   border-radius: 25px;
   font-size: 1.25em;
+}
+
+@media (max-width:830px) {
+  .displayBox{
+    top: -5%
+  }
+  .displayBox .rain{
+    top: -5vh;
+  }
+  .displayBox .description{
+    margin-top: 0vh;
+  }
+  .displayBottom{
+    margin: 0vh 2vh;
+  }
+}
+
+@media (max-width:400px) {
+  .displayBox{
+    top: -10%
+  }
+  .displayBox .rain{
+    top: -5vh;
+  }
+  .displayBox .description{
+    margin-top: 0vh;
+  }
+  .displayBottom{
+    margin: 5vh 2vh;
+  }
+}
+
+@media (max-width:370px) {
+  .displayBottom{
+    margin: 0vh 2vh;
+  }
 }

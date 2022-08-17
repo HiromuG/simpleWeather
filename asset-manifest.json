@@ -1,20 +1,22 @@
 {
   "files": {
     "main.css": "/simpleWeather/static/css/main.1c747088.css",
-    "main.js": "/simpleWeather/static/js/main.7e180602.js",
+    "main.js": "/simpleWeather/static/js/main.4188390d.js",
     "static/media/cloud.jpeg": "/simpleWeather/static/media/cloud.4bbdc3ae2a92f4936a46.jpeg",
     "static/media/白天多雲.svg": "/simpleWeather/static/media/白天多雲.b9b9b23976b7fac0056a.svg",
     "static/media/白天晴.svg": "/simpleWeather/static/media/白天晴.92aa30ad81486fcbd595.svg",
+    "static/media/晚上陰有雨.svg": "/simpleWeather/static/media/晚上陰有雨.06d22e33eb45d7dfc1ce.svg",
+    "static/media/白天陰有雨.svg": "/simpleWeather/static/media/白天陰有雨.06d22e33eb45d7dfc1ce.svg",
     "static/media/晚上多雲.svg": "/simpleWeather/static/media/晚上多雲.f0d621085c83f9b70951.svg",
     "index.html": "/simpleWeather/index.html",
     "static/media/晚上陰.svg": "/simpleWeather/static/media/晚上陰.99a60263c67582d7d868.svg",
     "static/media/白天陰.svg": "/simpleWeather/static/media/白天陰.99a60263c67582d7d868.svg",
     "static/media/晚上晴.svg": "/simpleWeather/static/media/晚上晴.0dc7c1c1e65fcad29281.svg",
     "main.1c747088.css.map": "/simpleWeather/static/css/main.1c747088.css.map",
-    "main.7e180602.js.map": "/simpleWeather/static/js/main.7e180602.js.map"
+    "main.4188390d.js.map": "/simpleWeather/static/js/main.4188390d.js.map"
   },
   "entrypoints": [
     "static/css/main.1c747088.css",
-    "static/js/main.7e180602.js"
+    "static/js/main.4188390d.js"
   ]
 }

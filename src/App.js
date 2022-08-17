@@ -12,7 +12,7 @@ function App() {
   const Taipei = useRef("臺北");
   const Taichung = useRef("臺中");
   const Kaohsiung = useRef("高雄");
-  const Taitung = useRef("臺東");
+  let dayNight = useRef('');
 
   const [weather,setWeather]=useState({
     observationTime: Date.now(),
@@ -21,6 +21,12 @@ function App() {
     temperature:'',
     windSpeed:'',
     humid:'',
+  })
+  const [weatherSituation,setWeatherSituation]=useState({
+    description:'',
+    weatherCode:'',
+    rainPossibility:'',
+    comfortability:''
   })
   
   const loading = ()=>{
@@ -53,6 +59,7 @@ function App() {
     setTimeout(()=>{
       showResult()
     },1001)
+    /////////////////////////////////////////////////
     fetch
     (`https://opendata.cwb.gov.tw/api/v1/rest/datastore/O-A0003-001?Authorization=CWB-9D9428B8-AC6C-4CE6-932C-6B6C12DBB091&locationName=${e.current.innerText}`)
     .then((response)=>response.json())
@@ -70,10 +77,43 @@ function App() {
     }).catch(error=>{
       console.log(error)
     })
+    ///////////////////////////////////////////////
+    fetch
+    (`https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=CWB-9D9428B8-AC6C-4CE6-932C-6B6C12DBB091&locationName=${e.current.innerText}市`)
+    .then((response)=>response.json())
+    .then((data)=>{
+      const location = data.records.location[0];
+      setWeatherSituation({
+        description: location.weatherElement[0].time[0].parameter.parameterName,
+        // weatherCode: location.weatherElement[0].time[0].parameter.parameterValue,
+        rainPossibility: location.weatherElement[1].time[0].parameter.parameterName,
+        comfortability: location.weatherElement[3].time[0].parameter.parameterName
+      })
+      console.log()
+      console.log('data',data)
+    }).catch(error=>{
+      console.log(error)
+    })
+    //////////////////////////////////////////////
+    const time = new Date().getHours();
+    if(time>=5 && time<=18){
+        dayNight.ref = '白天'
+    }else{
+      dayNight.ref = '晚上'
+    }
   }
 
   return (
     <div className="app">
+    <h3 className='time'> 
+      {new Intl.DateTimeFormat('zh-TW', {
+          year: 'numeric',
+          month: 'numeric', 
+          day: 'numeric',
+          hour: 'numeric',
+          minute: 'numeric',
+        }).format(new Date(weather.observationTime))}
+    </h3>
       <div className='locationSelect'>
         <div className='selector'>
           <p className='alert'>請勿星爆他</p>
@@ -91,9 +131,6 @@ function App() {
             <li className='options' ref={Kaohsiung} onClick={()=>{setSelectedText(Kaohsiung);locationClick(Kaohsiung)}}>
               <p>高雄</p>
             </li>
-            <li className='options' ref={Taitung} onClick={()=>{setSelectedText(Taitung);locationClick(Taitung)}}>
-              <p>臺東</p>
-            </li>
           </ul>
         </div>
       </div>
@@ -103,18 +140,13 @@ function App() {
       <div className={result}>
         <div className='displayBox'>
           <h2 className='city'>{selectText}</h2>
+          <h3 className='feel'>{weatherSituation.comfortability}</h3>
           <h1 className='temperature'>{Math.round(weather.temperature)}°C</h1>
-          <h2 className='description'>{weather.description}</h2>
+          <h2 className='rain'>降雨機率：<span>{weatherSituation.rainPossibility} </span>%
+          <img className='weatherIcon' src={require(`./source/${dayNight.ref+weather.description}.svg`)} alt=''/>
+          </h2>
+          <h2 className='description'>{weatherSituation.description}</h2>
         </div>
-        <h3 className='time'> 
-          {new Intl.DateTimeFormat('zh-TW', {
-              year: 'numeric',
-              month: 'numeric', 
-              day: 'numeric',
-              hour: 'numeric',
-              minute: 'numeric',
-            }).format(new Date(weather.observationTime))}
-        </h3>
         <div className='displayBottom'>
           <div className='humidity'>
             <p>濕度：{weather.humid * 100}%</p>

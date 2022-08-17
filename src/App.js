@@ -52,6 +52,7 @@ function App() {
     arrow==='arrow'?setArrow('arrowToggle'):setArrow('arrow');
   }
   const locationClick = (e)=>{
+    console.log('----------------------',e);
     loading();
     setTimeout(()=>{
       hideLoading()
@@ -96,7 +97,7 @@ function App() {
     })
     //////////////////////////////////////////////
     const time = new Date().getHours();
-    if(time>=5 && time<=18){
+    if(time>=5 && time<18){
         dayNight.ref = '白天'
     }else{
       dayNight.ref = '晚上'

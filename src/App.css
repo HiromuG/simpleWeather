@@ -54,16 +54,11 @@
         transform: rotate(360deg);
     }
   }
-.alert{
-  color: #fff;
-  padding: 10px;
-  text-align: center;
-}
 .locationSelect{
   display: flex;
   justify-content: center;
   position: relative;
-  top: 5%;
+  top: 7.5%;
   z-index: 2;
 }
 .selector{
@@ -178,6 +173,11 @@
   background: rgba(255,255,255,0.2);
   border-radius: 25px;
   font-size: 1.25em;
+}
+.support{
+  text-align: center;
+  margin-top: 10%;
+  color: lightgray
 }
 
 @media (max-width:830px) {

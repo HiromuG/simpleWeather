@@ -14,6 +14,7 @@ function App() {
   const Kaohsiung = useRef("高雄");
   let dayNight = useRef('');
 
+  ///////weather data
   const [weather,setWeather]=useState({
     observationTime: Date.now(),
     locationName:'',
@@ -22,13 +23,14 @@ function App() {
     windSpeed:'',
     humid:'',
   })
+  ///////rainy data
   const [weatherSituation,setWeatherSituation]=useState({
     description:'',
     weatherCode:'',
     rainPossibility:'',
     comfortability:''
   })
-  
+  ///////loading animation
   const loading = ()=>{
     setResult('result')
     setLoader('loader')
@@ -39,6 +41,7 @@ function App() {
   const showResult = ()=>{
     setResult('showResult')
   }
+  ///////choose location
   const setSelectedText = (e)=>{
     setSelectText(e.current.innerText);
     list==='hide'?setList('show'):setList('hide');
@@ -48,11 +51,13 @@ function App() {
     list==='hide'?setList('show'):setList('hide');
     toggleArrow();
   }
+  ///////arrow 
   const toggleArrow = ()=>{
     arrow==='arrow'?setArrow('arrowToggle'):setArrow('arrow');
   }
+  /////////////////////////////////////////
   const locationClick = (e)=>{
-    console.log('----------------------',e);
+    ///////loading animation
     loading();
     setTimeout(()=>{
       hideLoading()
@@ -74,9 +79,11 @@ function App() {
         windSpeed: locationData.weatherElement[2].elementValue,
         humid: locationData.weatherElement[4].elementValue,
       })
+      console.log('---------------------------------------');
       console.log('data',data);
-    }).catch(error=>{
-      console.log(error)
+    })
+    .catch((error)=>{
+      console.log('fetchError:',error)
     })
     ///////////////////////////////////////////////
     fetch
@@ -90,10 +97,9 @@ function App() {
         rainPossibility: location.weatherElement[1].time[0].parameter.parameterName,
         comfortability: location.weatherElement[3].time[0].parameter.parameterName
       })
-      console.log()
-      console.log('data',data)
-    }).catch(error=>{
-      console.log(error)
+      console.log('36hrWeatherData',data)
+    }).catch((error)=>{
+      console.log('fetchError:',error)
     })
     //////////////////////////////////////////////
     const time = new Date().getHours();
@@ -117,7 +123,6 @@ function App() {
     </h3>
       <div className='locationSelect'>
         <div className='selector'>
-          <p className='alert'>請勿星爆他</p>
           <div id='selectField' onClick={toggleList}>
             <p>{selectText}</p>
             <img src={arrowPng} alt='' className={arrow}/>
@@ -144,7 +149,11 @@ function App() {
           <h3 className='feel'>{weatherSituation.comfortability}</h3>
           <h1 className='temperature'>{Math.round(weather.temperature)}°C</h1>
           <h2 className='rain'>降雨機率：<span>{weatherSituation.rainPossibility} </span>%
-          <img className='weatherIcon' src={require(`./source/${dayNight.ref+weather.description}.svg`)} alt=''/>
+          <img className='weatherIcon'
+            src={require(`./source/${dayNight.ref+weather.description}.svg`)} 
+            alt=''
+            onError={(e)=>e.target.src='./source/白天多雲.svg'}
+          />
           </h2>
           <h2 className='description'>{weatherSituation.description}</h2>
         </div>
@@ -158,6 +167,7 @@ function App() {
         </div>
       </div>
       }
+      <h3 className='support'>&#40;支援圖示:晴，多雲，多雲有雷雨，陰，陰有雨，陰有雷雨&#41;</h3>
     </div>
   );
 }
